@@ -10,8 +10,6 @@ namespace FizzBuzzObserver
         private readonly IValueGenerator _valueGenerator;
         private readonly List<IObserver> _observers;
 
-        public bool Finished { get; private set; }
-
         public FizzBuzzData(IValueGenerator valueGenerator)
         {
             _valueGenerator = valueGenerator;
@@ -20,16 +18,11 @@ namespace FizzBuzzObserver
 
         public void GenerateData(int upperbound, List<NumberWordPair> pairs)
         {
-            Finished = false;
-            
             for (var i = 1; i <= upperbound; i++)
             {
                 var result =_valueGenerator.Generate(i, pairs);
                 NotifyObservers(i, result);
             }
-
-            Finished = true;
-
         }
 
         public void RegisterObserver(IObserver newObserver)

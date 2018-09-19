@@ -9,11 +9,11 @@ namespace FizzBuzzObserver.Observers
 
         public void Update(int currentNumber, string value)
         {
-            NumberOfValuesModifed++;
+            CurrentCount++;
 
-            if (value == currentNumber.ToString())
+            if (value != currentNumber.ToString())
             {
-                CurrentCount++;
+                NumberOfValuesModifed++;
             }
         }
     }

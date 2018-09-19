@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FizzBuzzObserver;
 using FizzBuzzObserver.Models;
 using FizzBuzzObserver.Observers;
@@ -18,13 +19,21 @@ namespace FizzBuzzObserverPattern
             int upperbound = 100;
 
             var subject = new FizzBuzzData(new ValueGenerator());
-            var observer1 = new Counter();
-            var observer2 = new Writer();
+            var counterObserver = new Counter();
+            var writerObserver = new Writer();
 
-            subject.RegisterObserver(observer1);
-            subject.RegisterObserver(observer2);
+            subject.RegisterObserver(counterObserver);
+            subject.RegisterObserver(writerObserver);
 
             subject.GenerateData(upperbound, data);
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Total numbers crunched: " + counterObserver.CurrentCount);
+            Console.WriteLine("Numbers changed to words: " + counterObserver.NumberOfValuesModifed);
+
+            Console.ReadKey();
         }
     }
 }
